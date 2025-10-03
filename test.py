@@ -71,7 +71,7 @@ def create_model_selection(self):
         self.model_dropdown.pack(side="left", padx=5)
         self.model_dropdown.bind("<<ComboboxSelected>>", self.update_input_section)
 
-    def create_input_output_sections(self):
+def create_input_output_sections(self):
         # Input frame (left)
         self.input_frame = tk.Frame(self, relief='ridge', bd=2, bg='#ffffff')
         self.input_frame.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
@@ -119,7 +119,7 @@ def browse_image(self):
         if file:
             self.image_path.set(file)
 
-    def create_run_buttons(self):
+def create_run_buttons(self):
         button_frame = tk.Frame(self, bg='#f0f0f0')
         button_frame.grid(row=2, column=0, columnspan=2, pady=10, sticky="ew")
 
@@ -127,3 +127,32 @@ def browse_image(self):
         run_btn.pack(side="left", padx=10)
         clear_btn = ttk.Button(button_frame, text="Clear", command=self.clear_output)
         clear_btn.pack(side="left", padx=10)
+    
+def run_model(self, model):
+        try:
+            if model == self.text_model:
+                input_data = self.text_entry.get()
+                if not input_data:
+                    raise ValueError("Enter a text prompt!")
+            else:
+                input_data = self.image_path.get()
+                if not input_data:
+                    raise ValueError("Select an image!")
+
+            output = model.run(input_data)
+            self.output_text.insert(tk.END, f"Output from {model.model_name}:\n")
+            if model == self.image_model:
+                try:
+                    img = PILImage.open(input_data)
+                    img.thumbnail((500, 500))  # Resize to fit nicely
+                    photo = ImageTk.PhotoImage(img)
+                    self.output_text.image_create(tk.END, image=photo)
+                    self.image_references.append(photo)  # Keep reference to prevent garbage collection
+                    self.output_text.insert(tk.END, "\n\n")
+                except Exception as img_err:
+                    self.output_text.insert(tk.END, f"Error displaying image: {str(img_err)}\n\n")
+            self.output_text.insert(tk.END, f"{output}\n\n")
+        except Exception as e:
+            self.show_error(str(e))
+    
+
