@@ -193,3 +193,39 @@ def create_info_sections(self):
         tk.Label(model_subframe, text="A Vision Transformer (ViT) model pre-trained on ImageNet, capable of classifying images into 1,000 categories with high accuracy using patch-based attention mechanisms.", 
                  font=('Arial', 11), wraplength=300, justify="left", bg='#ffffff', fg='#333333').grid(row=2, column=3, sticky="w", padx=2)
 
+        # OOP Concepts section header
+        oop_label = ttk.Label(info_frame, text="OOP Concepts Explanation", font=('Arial', 12, 'bold'))
+        oop_label.grid(row=0, column=1, pady=5, sticky="w")
+
+        # OOP table subframe
+        oop_subframe = tk.Frame(info_frame, relief='ridge', bd=2, bg='#ffffff')
+        oop_subframe.grid(row=1, column=1, sticky="nsew", padx=5)
+        oop_subframe.grid_columnconfigure(1, weight=1)
+
+        # OOP table headers
+        tk.Label(oop_subframe, text="Concept", font=('Arial', 11, 'bold'), bg='#ffffff', fg='#333333').grid(row=0, column=0, sticky="w", padx=2)
+        tk.Label(oop_subframe, text="Explanation", font=('Arial', 11, 'bold'), bg='#ffffff', fg='#333333').grid(row=0, column=1, sticky="w", padx=2)
+
+        # Multiple Inheritance row
+        tk.Label(oop_subframe, text="Multiple Inheritance", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=1, column=0, sticky="w", padx=2)
+        tk.Label(oop_subframe, text="Utilized in the AIGUI class, which inherits from tk.Tk for GUI functionality and Mixin for shared utility methods like error handling.", 
+                 font=('Arial', 11), wraplength=400, justify="left", bg='#ffffff', fg='#333333').grid(row=1, column=1, sticky="w", padx=2)
+
+        # Encapsulation row
+        tk.Label(oop_subframe, text="Encapsulation", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=2, column=0, sticky="w", padx=2)
+        tk.Label(oop_subframe, text="Implemented in BaseModel with private attributes (_model_name, _task, _pipeline) and a property getter for model_name to control access.", 
+                 font=('Arial', 11), wraplength=400, justify="left", bg='#ffffff', fg='#333333').grid(row=2, column=1, sticky="w", padx=2)
+
+        # Polymorphism and Method Overriding row
+        tk.Label(oop_subframe, text="Polymorphism and Method Overriding", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=3, column=0, sticky="w", padx=2)
+        tk.Label(oop_subframe, text="Demonstrated through the 'run' method in subclasses (TextGenerationModel and ImageClassificationModel), which override the base implementation to handle specific input types and processing logic.", 
+                 font=('Arial', 11), wraplength=400, justify="left", bg='#ffffff', fg='#333333').grid(row=3, column=1, sticky="w", padx=2)
+
+        # Multiple Decorators row
+        tk.Label(oop_subframe, text="Multiple Decorators", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=4, column=0, sticky="w", padx=2)
+        tk.Label(oop_subframe, text="Applied to the 'run' methods in subclasses using @timer and @logger for performance timing and execution logging.", 
+                 font=('Arial', 11), wraplength=400, justify="left", bg='#ffffff', fg='#333333').grid(row=4, column=1, sticky="w", padx=2)
+
+        # Notes section
+        notes_label = ttk.Label(info_frame, text="Notes: This application demonstrates integration of Hugging Face models with a Tkinter-based GUI for AI tasks with the co-oridnation of 3 members of our group.", font=('Arial', 10, 'italic'))
+        notes_label.grid(row=2, column=0, columnspan=2, pady=5, sticky="w")
