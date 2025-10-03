@@ -14,3 +14,15 @@ class BaseModel:
 
     def run(self, input_data):
         raise NotImplementedError("Subclasses must implement run method")  # For polymorphism
+
+class TextGenerationModel(BaseModel):
+    def __init__(self, model_name='distilgpt2'):
+        super().__init__(model_name, 'text-generation')
+
+    @timer  # Multiple decorators
+    @logger
+    def run(self, input_data):  # Method overriding and polymorphism
+        result = self._pipeline(input_data, max_length=50, num_return_sequences=1)
+        return result[0]['generated_text']  # Override to extract generated text
+
+
