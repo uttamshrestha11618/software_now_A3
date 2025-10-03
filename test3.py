@@ -25,4 +25,14 @@ class TextGenerationModel(BaseModel):
         result = self._pipeline(input_data, max_length=50, num_return_sequences=1)
         return result[0]['generated_text']  # Override to extract generated text
 
+class ImageClassificationModel(BaseModel):
+    def __init__(self, model_name='google/vit-base-patch16-224'):
+        super().__init__(model_name, 'image-classification')
+
+    @timer  # Multiple decorators
+    @logger
+    def run(self, input_data):  # Method overriding and polymorphism
+        image = Image.open(input_data)  # input_data is file path
+        result = self._pipeline(image)
+        return "\n".join([f"{res['label']}: {res['score']:.2f}" for res in result])  # Override to format classifications
 
