@@ -16,3 +16,4 @@ def timer(func):
         print(f"Timing: {func.__name__} took {elapsed:.2f} seconds")
         return res
     return wrapper
+
