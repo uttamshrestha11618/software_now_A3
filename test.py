@@ -94,3 +94,22 @@ def create_model_selection(self):
         self.output_text = scrolledtext.ScrolledText(output_frame, height=15, width=50, bg='#ffffff', fg='#333333')
         self.output_text.pack(pady=5, fill="both", expand=True)
 
+def update_input_section(self, event=None):
+        # Clear dynamic input widgets
+        for widget in self.input_frame.winfo_children()[1:]:  # After label
+            widget.destroy()
+
+        selected = self.model_var.get()
+        if selected == "Text Generation":
+            self.current_model = self.text_model
+            self.text_entry = ttk.Entry(self.input_frame, width=50)
+            self.text_entry.pack(pady=5)
+        else:
+            self.current_model = self.image_model
+            image_input_frame = tk.Frame(self.input_frame, bg='#ffffff')
+            image_input_frame.pack(pady=5)
+            self.image_path = tk.StringVar()
+            entry = ttk.Entry(image_input_frame, textvariable=self.image_path, width=40)
+            entry.pack(side="left", padx=5)
+            browse_btn = ttk.Button(image_input_frame, text="Browse", command=self.browse_image)
+            browse_btn.pack(side="left")
