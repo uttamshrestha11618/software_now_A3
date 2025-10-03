@@ -155,4 +155,8 @@ def run_model(self, model):
         except Exception as e:
             self.show_error(str(e))
     
+def clear_output(self):
+        self.output_text.delete(1.0, tk.END)
+        self.image_references = []  # Clear image references
+    
 
