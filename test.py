@@ -42,3 +42,17 @@ class AIGUI(tk.Tk, Mixin):  # Multiple inheritance: from tk.Tk and Mixin
 
         # List to keep image references
         self.image_references = []
+ def create_menu(self):
+        menubar = tk.Menu(self, bg='#f0f0f0', fg='#333333')
+        file_menu = tk.Menu(menubar, tearoff=0, bg='#ffffff', fg='#333333')
+        file_menu.add_command(label="Exit", command=self.quit)
+        menubar.add_cascade(label="File", menu=file_menu)
+
+        models_menu = tk.Menu(menubar, tearoff=0, bg='#ffffff', fg='#333333')
+        models_menu.add_command(label="Load Model", command=lambda: messagebox.showinfo("Info", "Models loaded!"))
+        menubar.add_cascade(label="Models", menu=models_menu)
+
+        help_menu = tk.Menu(menubar, tearoff=0, bg='#ffffff', fg='#333333')
+        help_menu.add_command(label="About", command=lambda: messagebox.showinfo("About", "HIT137 Assignment 3 GUI"))
+        menubar.add_cascade(label="Help", menu=help_menu)
+        self.config(menu=menubar)
