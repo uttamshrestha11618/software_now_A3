@@ -159,4 +159,37 @@ def clear_output(self):
         self.output_text.delete(1.0, tk.END)
         self.image_references = []  # Clear image references
     
+def create_info_sections(self):
+        info_frame = tk.Frame(self, relief='ridge', bd=2, bg='#ffffff')
+        info_frame.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+        info_frame.grid_columnconfigure((0, 1), weight=1)
+
+        # Model Info section header
+        model_label = ttk.Label(info_frame, text="Model Information & Explanation", font=('Arial', 12, 'bold'))
+        model_label.grid(row=0, column=0, pady=5, sticky="w")
+
+        # Model table subframe
+        model_subframe = tk.Frame(info_frame, relief='ridge', bd=2, bg='#ffffff')
+        model_subframe.grid(row=1, column=0, sticky="nsew", padx=5)
+        model_subframe.grid_columnconfigure(3, weight=1)
+
+        # Model table headers
+        tk.Label(model_subframe, text="Model", font=('Arial', 11, 'bold'), bg='#ffffff', fg='#333333').grid(row=0, column=0, sticky="w", padx=2)
+        tk.Label(model_subframe, text="Name", font=('Arial', 11, 'bold'), bg='#ffffff', fg='#333333').grid(row=0, column=1, sticky="w", padx=2)
+        tk.Label(model_subframe, text="Category", font=('Arial', 11, 'bold'), bg='#ffffff', fg='#333333').grid(row=0, column=2, sticky="w", padx=2)
+        tk.Label(model_subframe, text="Description", font=('Arial', 11, 'bold'), bg='#ffffff', fg='#333333').grid(row=0, column=3, sticky="w", padx=2)
+
+        # Text Generation row
+        tk.Label(model_subframe, text="Text Generation", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=1, column=0, sticky="w", padx=2)
+        tk.Label(model_subframe, text="distilgpt2", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=1, column=1, sticky="w", padx=2)
+        tk.Label(model_subframe, text="Text", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=1, column=2, sticky="w", padx=2)
+        tk.Label(model_subframe, text="A distilled version of GPT-2, optimized for efficient text generation from user prompts, producing coherent and contextually relevant outputs.", 
+                 font=('Arial', 11), wraplength=300, justify="left", bg='#ffffff', fg='#333333').grid(row=1, column=3, sticky="w", padx=2)
+
+        # Image Classification row
+        tk.Label(model_subframe, text="Image Classification", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=2, column=0, sticky="w", padx=2)
+        tk.Label(model_subframe, text="google/vit-base-patch16-224", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=2, column=1, sticky="w", padx=2)
+        tk.Label(model_subframe, text="Vision", font=('Arial', 11), bg='#ffffff', fg='#333333').grid(row=2, column=2, sticky="w", padx=2)
+        tk.Label(model_subframe, text="A Vision Transformer (ViT) model pre-trained on ImageNet, capable of classifying images into 1,000 categories with high accuracy using patch-based attention mechanisms.", 
+                 font=('Arial', 11), wraplength=300, justify="left", bg='#ffffff', fg='#333333').grid(row=2, column=3, sticky="w", padx=2)
 
