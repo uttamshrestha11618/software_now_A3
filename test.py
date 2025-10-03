@@ -70,3 +70,27 @@ def create_model_selection(self):
         self.model_dropdown = ttk.Combobox(top_frame, textvariable=self.model_var, values=models)
         self.model_dropdown.pack(side="left", padx=5)
         self.model_dropdown.bind("<<ComboboxSelected>>", self.update_input_section)
+
+    def create_input_output_sections(self):
+        # Input frame (left)
+        self.input_frame = tk.Frame(self, relief='ridge', bd=2, bg='#ffffff')
+        self.input_frame.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
+        self.input_frame.grid_columnconfigure(0, weight=1)
+
+        input_label = ttk.Label(self.input_frame, text="User Input Section", font=('Arial', 12, 'bold'))
+        input_label.pack(pady=5)
+
+        self.update_input_section()  # Initial setup
+
+        # Output frame (right)
+        output_frame = tk.Frame(self, relief='ridge', bd=2, bg='#ffffff')
+        output_frame.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
+        output_frame.grid_columnconfigure(0, weight=1)
+        output_frame.grid_rowconfigure(1, weight=1)
+
+        output_label = ttk.Label(output_frame, text="Model Output Section", font=('Arial', 12, 'bold'))
+        output_label.pack(pady=5)
+
+        self.output_text = scrolledtext.ScrolledText(output_frame, height=15, width=50, bg='#ffffff', fg='#333333')
+        self.output_text.pack(pady=5, fill="both", expand=True)
+
