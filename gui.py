@@ -229,3 +229,4 @@ def create_info_sections(self):
         # Notes section
         notes_label = ttk.Label(info_frame, text="Notes: This application demonstrates integration of Hugging Face models with a Tkinter-based GUI for AI tasks with the co-oridnation of 3 members of our group.", font=('Arial', 10, 'italic'))
         notes_label.grid(row=2, column=0, columnspan=2, pady=5, sticky="w")
+
