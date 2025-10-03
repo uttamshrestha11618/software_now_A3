@@ -113,3 +113,17 @@ def update_input_section(self, event=None):
             entry.pack(side="left", padx=5)
             browse_btn = ttk.Button(image_input_frame, text="Browse", command=self.browse_image)
             browse_btn.pack(side="left")
+
+def browse_image(self):
+        file = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png")])
+        if file:
+            self.image_path.set(file)
+
+    def create_run_buttons(self):
+        button_frame = tk.Frame(self, bg='#f0f0f0')
+        button_frame.grid(row=2, column=0, columnspan=2, pady=10, sticky="ew")
+
+        run_btn = ttk.Button(button_frame, text="Run", command=lambda: self.run_model(self.current_model))
+        run_btn.pack(side="left", padx=10)
+        clear_btn = ttk.Button(button_frame, text="Clear", command=self.clear_output)
+        clear_btn.pack(side="left", padx=10)
