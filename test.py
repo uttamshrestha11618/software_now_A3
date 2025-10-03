@@ -58,3 +58,15 @@ class AIGUI(tk.Tk, Mixin):  # Multiple inheritance: from tk.Tk and Mixin
         menubar.add_cascade(label="Help", menu=help_menu)
         self.config(menu=menubar)
 
+def create_model_selection(self):
+        top_frame = tk.Frame(self, bg='#f0f0f0')
+        top_frame.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+
+        label = ttk.Label(top_frame, text="Model Selection:", font=('Arial', 12, 'bold'))
+        label.pack(side="left", padx=5)
+
+        self.model_var = tk.StringVar(value="Text Generation")
+        models = ["Text Generation", "Image Classification"]
+        self.model_dropdown = ttk.Combobox(top_frame, textvariable=self.model_var, values=models)
+        self.model_dropdown.pack(side="left", padx=5)
+        self.model_dropdown.bind("<<ComboboxSelected>>", self.update_input_section)
